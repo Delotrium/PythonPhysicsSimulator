@@ -1,0 +1,20 @@
+#This file contains data settings for the main file.
+gravityFlip =  False
+gravityValue = -500
+ballMass = 5000
+ballRadius = 25
+displayText = ""
+windowSizeX = 1920
+windowSizeY = 1080
+FrictionMultiplier = 1
+ElasticityMultiplier = 1
+SoundPath = 'sound.mp3'
+MusicPath = 'music.mp3'
+Music = True
+WindowsSizeFactorX = windowSizeX / 640
+WindowsSizeFactorY = windowSizeY / 480 
+StrokeThickness = 2
+SegmentOneXMultiplier = WindowsSizeFactorX
+SegmentTwoXMultiplier = WindowsSizeFactorX
+SegmentOneYMultiplier = WindowsSizeFactorY
+SegmentTwoYMultiplier = WindowsSizeFactorY 
