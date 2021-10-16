@@ -11,7 +11,10 @@ from settings import *
 from environment import *
 
 music = Music
-
+if music:
+    music = pyglet.resource.media(MusicPath)
+    music.play()
+ 
 pyglet.options['audio'] = ('openal', 'pulse', 'directsound', 'silent')
 pyglet.options['search_local_libs'] = True
 window = pyglet.window.Window(windowSizeX, windowSizeY, "Physics Simulation", resizable=True, visible=False)
@@ -19,9 +22,7 @@ window = pyglet.window.Window(windowSizeX, windowSizeY, "Physics Simulation", re
 options = pymunk.pyglet_util.DrawOptions()
 batch = pyglet.graphics.Batch()
 
-if music:
-    music = pyglet.resource.media(MusicPath)
-    music.play()
+
 
 space = pymunk.Space()
 if gravityFlip == True:
@@ -93,5 +94,5 @@ window.push_handlers(event_logger)
 window.set_visible()
 
 if __name__ == "__main__":
-    pyglet.clock.schedule_interval(update, 1.0/2500)
+    pyglet.clock.schedule_interval(update, 1.0/10000)
     pyglet.app.run()
