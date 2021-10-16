@@ -90,7 +90,6 @@ def update(dt):
 
 event_logger = pyglet.window.event.WindowEventLogger()
 window.push_handlers(event_logger)
-
 window.set_visible()
 
 if __name__ == "__main__":
