@@ -11,10 +11,7 @@ from settings import *
 from environment import *
 
 music = Music
-if music:
-    music = pyglet.resource.media(MusicPath)
-    music.play()
- 
+
 pyglet.options['audio'] = ('openal', 'pulse', 'directsound', 'silent')
 pyglet.options['search_local_libs'] = True
 window = pyglet.window.Window(windowSizeX, windowSizeY, "Physics Simulation", resizable=True, visible=False)
@@ -22,12 +19,14 @@ window = pyglet.window.Window(windowSizeX, windowSizeY, "Physics Simulation", re
 options = pymunk.pyglet_util.DrawOptions()
 batch = pyglet.graphics.Batch()
 
-
+if music:
+    music = pyglet.resource.media(MusicPath)
+    music.play()
 
 space = pymunk.Space()
 if gravityFlip == True:
     gravityValue = -gravityValue
-space.gravity = 0, gravityValue
+space.gravity = 1, gravityValue
 
 mass = ballMass
 radius = ballRadius
@@ -41,22 +40,20 @@ window.set_mouse_visible(True)
 cursor = window.get_system_mouse_cursor(window.CURSOR_DEFAULT)
 window.set_mouse_cursor(cursor)
 
-
 i = 0
 
 while i < Shape_Amount:
-    segment_shape = pymunk.Segment(space.static_body, (ShapeList[i][0],ShapeList[i][1]), (ShapeList[i][2],ShapeList[i][3]), StrokeThickness)
-    segment_shape.body.position = 100, 100
+    segment_shape = pymunk.Segment(space.static_body, (ShapeList[i][0] ,ShapeList[i][1]), (ShapeList[i][2],ShapeList[i][3]), StrokeThickness)
+    segment_shape.body.position = 100  , 100  
     segment_shape.elasticity = 1 * ElasticityMultiplier
     segment_shape.friction = 1.0 * FrictionMultiplier
     space.add(segment_shape)
     i += 1
 
-
 @window.event
 def on_draw():
     window.clear()
-    label.draw()
+    #label.draw()
     space.debug_draw(options)
 
 @window.event
@@ -73,10 +70,6 @@ def on_mouse_press(x, y, button, modifiers):
             space.add(circle_body, circle_shape)
 
 @window.event
-def on_deactivate():
-    pyglet.app.exit
-
-@window.event
 def on_key_press(symbol, modifiers):
     if symbol == key.Q:
         music.pause()
@@ -91,8 +84,9 @@ def update(dt):
 
 event_logger = pyglet.window.event.WindowEventLogger()
 window.push_handlers(event_logger)
+
 window.set_visible()
 
 if __name__ == "__main__":
-    pyglet.clock.schedule_interval(update, 1.0/10000)
+    pyglet.clock.schedule_interval(update, RefreshRate)
     pyglet.app.run()
