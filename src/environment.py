@@ -62,6 +62,3 @@ elif environment == 'course1':
 ShapeList = [ shapelist, shapelist2, shapelist3, shapelist4, shapelist5, shapelist6, shapelist7, shapelist8, shapelist9, shapelist10, shapelist11, shapelist12, shapelist13,
              shapelist14, shapelist16]
 Shape_Amount = len(ShapeList)
-
-
-
